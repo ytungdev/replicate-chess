@@ -54,11 +54,17 @@ app.post('/board/moves', (req, res) => {
     result = board.moves(r, f);
     res.send(JSON.stringify(result));
 });
-// check moveSet of character : /moveSet?c=King
-app.get('/moveSet', (req, res) => {
-    const c = req.query.c;
+// check moveSet of character : /moveSet/King
+app.get('/character/:char', (req, res) => {
+    const c = req.params.char;
     const chessClass = Chess.chessMaker[c];
-    let result = chessClass.moveSet;
+    let result = {
+        symbol: chessClass.symbol,
+        qty: chessClass.qty,
+        moveSet: chessClass.moveSet,
+        initialMoveSet: chessClass.initialMoveSet,
+        captureMoveSet: chessClass.captureMoveSet,
+    };
     res.send(JSON.stringify(result));
 });
 app.listen(port, () => {

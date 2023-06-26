@@ -52,12 +52,14 @@ exports.Base = Base;
 class King extends Base {
     constructor() {
         super(...arguments);
-        this.symbol = ['♔', '♚', 'K'];
-        this.qty = 1;
         this.moveSet = King.moveSet;
+        this.symbol = King.symbol;
+        this.qty = King.qty;
     }
 }
 exports.King = King;
+King.symbol = ['♔', '♚', 'K'];
+King.qty = 1;
 King.moveSet = [
     { rank: 0, file: 1, step: 1 },
     { rank: 1, file: 1, step: 1 },
@@ -71,12 +73,14 @@ King.moveSet = [
 class Queen extends Base {
     constructor() {
         super(...arguments);
-        this.symbol = ['♕', '♛', 'Q'];
-        this.qty = 1;
         this.moveSet = Queen.moveSet;
+        this.symbol = Queen.symbol;
+        this.qty = Queen.qty;
     }
 }
 exports.Queen = Queen;
+Queen.symbol = ['♕', '♛', 'Q'];
+Queen.qty = 1;
 Queen.moveSet = [
     { rank: 0, file: 1, step: 7 },
     { rank: 1, file: 1, step: 7 },
@@ -90,12 +94,14 @@ Queen.moveSet = [
 class Rook extends Base {
     constructor() {
         super(...arguments);
-        this.symbol = ['♖', '♜', 'R'];
-        this.qty = 2;
         this.moveSet = Rook.moveSet;
+        this.symbol = Rook.symbol;
+        this.qty = Rook.qty;
     }
 }
 exports.Rook = Rook;
+Rook.symbol = ['♖', '♜', 'R'];
+Rook.qty = 2;
 Rook.moveSet = [
     { rank: 0, file: 1, step: 7 },
     { rank: 1, file: 0, step: 7 },
@@ -105,12 +111,14 @@ Rook.moveSet = [
 class Bishop extends Base {
     constructor() {
         super(...arguments);
-        this.symbol = ['♗', '♝', 'B'];
-        this.qty = 2;
         this.moveSet = Bishop.moveSet;
+        this.symbol = Bishop.symbol;
+        this.qty = Bishop.qty;
     }
 }
 exports.Bishop = Bishop;
+Bishop.symbol = ['♗', '♝', 'B'];
+Bishop.qty = 2;
 Bishop.moveSet = [
     { rank: 1, file: 1, step: 7 },
     { rank: 1, file: -1, step: 7 },
@@ -120,12 +128,14 @@ Bishop.moveSet = [
 class Knight extends Base {
     constructor() {
         super(...arguments);
-        this.symbol = ['♘', '♞', 'N'];
-        this.qty = 2;
         this.moveSet = Knight.moveSet;
+        this.symbol = Knight.symbol;
+        this.qty = Knight.qty;
     }
 }
 exports.Knight = Knight;
+Knight.symbol = ['♘', '♞', 'N'];
+Knight.qty = 2;
 Knight.moveSet = [
     { rank: 1, file: 2, step: 1 },
     { rank: 2, file: 1, step: 1 },
@@ -139,14 +149,16 @@ Knight.moveSet = [
 class Pawn extends Base {
     constructor() {
         super(...arguments);
-        this.symbol = ['♙', '♟︎', 'P'];
-        this.qty = 8;
         this.moveSet = Pawn.moveSet;
         this.initialMoveSet = Pawn.initialMoveSet;
         this.captureMoveSet = Pawn.captureMoveSet;
+        this.symbol = Pawn.symbol;
+        this.qty = Pawn.qty;
     }
 }
 exports.Pawn = Pawn;
+Pawn.symbol = ['♙', '♟︎', 'P'];
+Pawn.qty = 8;
 //base on white
 Pawn.moveSet = [
     { rank: -1, file: 0, step: 1 },

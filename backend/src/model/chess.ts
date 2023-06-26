@@ -67,8 +67,8 @@ export class Base {
 type Move = { rank: number, file: number, step: number }
 
 export class King extends Base {
-    symbol = ['♔','♚','K']
-    qty: number = 1
+    static symbol = ['♔','♚','K']
+    static qty: number = 1
     static moveSet: Move[] = [
         { rank: 0, file: 1, step: 1 },
         { rank: 1, file: 1, step: 1 },
@@ -80,10 +80,12 @@ export class King extends Base {
         { rank: -1, file: 1, step: 1 }
     ]
     moveSet = King.moveSet;
+    symbol = King.symbol;
+    qty = King.qty;
 }
 export class Queen extends Base {
-    symbol = ['♕','♛','Q']
-    qty: number = 1
+    static symbol = ['♕','♛','Q']
+    static qty: number = 1
     static moveSet: Move[] = [
         { rank: 0, file: 1, step: 7 },
         { rank: 1, file: 1, step: 7 },
@@ -95,10 +97,12 @@ export class Queen extends Base {
         { rank: -1, file: 1, step: 7 },
     ]
     moveSet = Queen.moveSet;
+    symbol = Queen.symbol;
+    qty = Queen.qty;
 }
 export class Rook extends Base {
-    symbol = ['♖','♜','R']
-    qty: number = 2
+    static symbol = ['♖','♜','R']
+    static qty: number = 2
     static moveSet: Move[] = [
         { rank: 0, file: 1, step: 7 },
         { rank: 1, file: 0, step: 7 },
@@ -106,10 +110,12 @@ export class Rook extends Base {
         { rank: -1, file: 0, step: 7 },
     ]
     moveSet = Rook.moveSet;
+    symbol = Rook.symbol;
+    qty = Rook.qty;
 }
 export class Bishop extends Base {
-    symbol = ['♗','♝','B']
-    qty: number = 2
+    static symbol = ['♗','♝','B']
+    static qty: number = 2
     static moveSet: Move[] = [
         { rank: 1, file: 1, step: 7 },
         { rank: 1, file: -1, step: 7 },
@@ -117,10 +123,12 @@ export class Bishop extends Base {
         { rank: -1, file: 1, step: 7 },
     ]
     moveSet = Bishop.moveSet;
+    symbol = Bishop.symbol;
+    qty = Bishop.qty;
 }
 export class Knight extends Base {
-    symbol = ['♘','♞','N']
-    qty: number = 2
+    static symbol = ['♘','♞','N']
+    static qty: number = 2
     static moveSet: Move[] = [
         { rank: 1, file: 2, step: 1 },
         { rank: 2, file: 1, step: 1 },
@@ -132,10 +140,12 @@ export class Knight extends Base {
         { rank: -1, file: 2, step: 1 },
     ]
     moveSet = Knight.moveSet;
+    symbol = Knight.symbol;
+    qty = Knight.qty;
 }
 export class Pawn extends Base {
-    symbol = ['♙','♟︎','P']
-    qty: number = 8
+    static symbol = ['♙','♟︎','P']
+    static qty: number = 8
     //base on white
     static moveSet: Move[] = [
         { rank: -1, file: 0, step: 1 },
@@ -152,6 +162,8 @@ export class Pawn extends Base {
     moveSet = Pawn.moveSet;
     initialMoveSet = Pawn.initialMoveSet;
     captureMoveSet = Pawn.captureMoveSet;
+    symbol = Pawn.symbol;
+    qty = Pawn.qty;
 }
 
 export const chessMaker:{[key:string]:any} = {

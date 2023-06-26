@@ -35,12 +35,18 @@ app.post('/board/moves', (req: Request, res: Response) => {
 });
 
 
-// check moveSet of character : /moveSet?c=King
-app.get('/moveSet', (req: Request, res: Response) => {
-  const c = req.query.c as string;
+// check moveSet of character : /moveSet/King
+app.get('/character/:char', (req: Request, res: Response) => {
+  const c = req.params.char as string;
   const chessClass = Chess.chessMaker[c]
   
-  let result = chessClass.moveSet
+  let result = {
+    symbol : chessClass.symbol,
+    qty : chessClass.qty,
+    moveSet : chessClass.moveSet,
+    initialMoveSet : chessClass.initialMoveSet,
+    captureMoveSet : chessClass.captureMoveSet,
+  }
   res.send(JSON.stringify(result));
 });
 
