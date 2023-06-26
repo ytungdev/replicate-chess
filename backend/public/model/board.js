@@ -84,24 +84,41 @@ class Board {
                         }
                     }
                 }
-            }
-            for (let m in moveSet) {
-                const action = moveSet[m];
-                for (let i = 1; i < action.step + 1; i++) {
-                    const newR = Board.moveRank(rank, action.rank * i);
-                    const newF = Board.moveFile(file, action.file * i);
-                    if (newR && newF) {
-                        const sq = this.board[newR][newF];
-                        const occupier = sq.occupier;
-                        const id = newR + newF;
-                        if (occupier != null) {
-                            if (occupier.color != color) {
+                for (let m in moveSet) {
+                    const action = moveSet[m];
+                    for (let i = 1; i < action.step + 1; i++) {
+                        const newR = Board.moveRank(rank, action.rank * i);
+                        const newF = Board.moveFile(file, action.file * i);
+                        if (newR && newF) {
+                            const sq = this.board[newR][newF];
+                            const occupier = sq.occupier;
+                            const id = newR + newF;
+                            if (occupier == null) {
                                 result.moves.push(id);
                             }
-                            break;
                         }
-                        if (occupier == null) {
-                            result.moves.push(id);
+                    }
+                }
+            }
+            else {
+                for (let m in moveSet) {
+                    const action = moveSet[m];
+                    for (let i = 1; i < action.step + 1; i++) {
+                        const newR = Board.moveRank(rank, action.rank * i);
+                        const newF = Board.moveFile(file, action.file * i);
+                        if (newR && newF) {
+                            const sq = this.board[newR][newF];
+                            const occupier = sq.occupier;
+                            const id = newR + newF;
+                            if (occupier != null) {
+                                if (occupier.color != color) {
+                                    result.moves.push(id);
+                                }
+                                break;
+                            }
+                            if (occupier == null) {
+                                result.moves.push(id);
+                            }
                         }
                     }
                 }
