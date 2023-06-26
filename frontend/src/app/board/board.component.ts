@@ -28,7 +28,6 @@ export class BoardComponent implements OnInit {
 
     constructor(private http: HttpService) { }
 
-
     reset() {
         this.selected = '';
         this.highlx = [];
@@ -36,7 +35,7 @@ export class BoardComponent implements OnInit {
 
     select(r: string, f: string): void {
         if (r + f == this.selected) {
-            //disselect
+            //deselect
             this.reset()
             return
         }

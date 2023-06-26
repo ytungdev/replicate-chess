@@ -26,7 +26,14 @@ app.post('/board/moves', (req: Request, res: Response) => {
   const b = params.board
   const r = params.r
   const f = params.f
-  const board = new Board(b)
+  let board:Board;
+
+  if (b==null){
+    board = new Board()
+    board.init()
+  } else {
+    board = new Board(b)
+  }
   console.log(`POST /board/moves : ${r}, ${f}, ${b}`)
 
   let result : any;

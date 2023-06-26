@@ -48,7 +48,14 @@ app.post('/board/moves', (req, res) => {
     const b = params.board;
     const r = params.r;
     const f = params.f;
-    const board = new board_1.default(b);
+    let board;
+    if (b == null) {
+        board = new board_1.default();
+        board.init();
+    }
+    else {
+        board = new board_1.default(b);
+    }
     console.log(`POST /board/moves : ${r}, ${f}, ${b}`);
     let result;
     result = board.moves(r, f);
