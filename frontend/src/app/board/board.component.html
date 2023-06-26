@@ -1,0 +1,30 @@
+<h1 align="center">Chess</h1>
+<div *ngIf="board">
+    <!-- <div [innerHTML]="board | json"></div> -->
+    <table>
+        <tr *ngIf="files">
+            <ng-container *ngFor="let file of files">
+                <td>{{file}}</td>
+            </ng-container>
+        </tr>
+        <tr *ngFor="let r of ranks;let i=index">
+            <ng-container *ngFor="let f of files">
+                <td [ngClass]="selected==board[r][f].id ? 'selected' : (highlx.includes(board[r][f].id) ? 'highlx' : board[r][f].color)" 
+                    (click)="select(board[r][f].rank, board[r][f].file)" id="{{board[r][f].id}}">
+                        <ng-container *ngIf="board[r][f].occupier != null;else occupier_null">
+                            <span [ngClass]="board[r][f].occupier.color">
+                                {{board[r][f].occupier.color == 'white' ? board[r][f].occupier.symbol[0] : board[r][f].occupier.symbol[1] }}
+                            </span>
+                        </ng-container>
+                        <ng-template #occupier_null>
+
+                        </ng-template>
+                </td>
+            </ng-container>
+            <td *ngIf="ranks">
+                {{ranks[i]}}
+            </td>
+        </tr>
+    </table>
+    <h1 align="center" *ngIf="winner != ''">The winner is : {{winner}}</h1>
+</div>
