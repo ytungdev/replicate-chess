@@ -77,10 +77,12 @@ export default class Board {
             character: (string | null),
             color: (string | null),
             moves: string[]
+            promote: string[]
         } = {
             character: null,
             color: null,
-            moves: []
+            moves: [],
+            promote: []
         }
         
         const chess = this.board[rank][file].occupier
@@ -141,6 +143,17 @@ export default class Board {
                     }
                 }
             }
+            let enemyBase:string[];
+            if (color == 'white'){
+                enemyBase = ['8a', '8b', '8c', '8d', '8e', '8f', '8g', '8h']
+            } else {
+                enemyBase = ['8a', '8b', '8c', '8d', '8e', '8f', '8g', '8h']
+            }
+            result.moves.forEach(loc => {
+                if (enemyBase.includes(loc)){
+                    result.promote.push(loc)
+                }
+            })
         } else {
             for (let m in moveSet) {
                 const action = moveSet[m]

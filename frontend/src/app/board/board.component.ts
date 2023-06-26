@@ -22,8 +22,11 @@ export class BoardComponent implements OnInit {
     board: any = {};
     ranks: string[] = [];
     files: string[] = [];
+    
     highlx: string[] = []
+    promote: string[] = []
     selected: string = ''
+
     winner:string = ''
 
     constructor(private http: HttpService) { }
@@ -31,6 +34,7 @@ export class BoardComponent implements OnInit {
     reset() {
         this.selected = '';
         this.highlx = [];
+        this.promote = []
     }
 
     select(r: string, f: string): void {
@@ -47,6 +51,7 @@ export class BoardComponent implements OnInit {
             this.selected = r + f;
             this.http.postMove(this.board, r, f).subscribe((data => {
                 this.highlx = data.moves;
+                this.promote = data.promote;
             }))
         }
     }
@@ -58,6 +63,9 @@ export class BoardComponent implements OnInit {
         const moveTo = () => {
             fsq.occupier = null;
             tsq.occupier = chess
+            if(this.promote.includes(tr+tf)){
+                alert('PROMOTION!!')
+            }
             this.reset()
         }
 

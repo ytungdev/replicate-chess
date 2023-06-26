@@ -43,7 +43,8 @@ class Board {
             let result = {
                 character: null,
                 color: null,
-                moves: []
+                moves: [],
+                promote: []
             };
             const chess = this.board[rank][file].occupier;
             if (chess == null) {
@@ -99,6 +100,18 @@ class Board {
                         }
                     }
                 }
+                let enemyBase;
+                if (color == 'white') {
+                    enemyBase = ['8a', '8b', '8c', '8d', '8e', '8f', '8g', '8h'];
+                }
+                else {
+                    enemyBase = ['8a', '8b', '8c', '8d', '8e', '8f', '8g', '8h'];
+                }
+                result.moves.forEach(loc => {
+                    if (enemyBase.includes(loc)) {
+                        result.promote.push(loc);
+                    }
+                });
             }
             else {
                 for (let m in moveSet) {
