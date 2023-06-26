@@ -49,6 +49,7 @@ export class Base {
     moveSet:Move[];
     initialMoveSet:Move[];
     captureMoveSet:Move[];
+    direction:number;
     symbol:string[];
 
     constructor(id: string) {
@@ -61,6 +62,7 @@ export class Base {
         this.initialMoveSet = [];
         this.captureMoveSet = [];
         this.symbol = []
+        this.direction = this.color == 'white' ? 1 : -1;
     }
 }
 

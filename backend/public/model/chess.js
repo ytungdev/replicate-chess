@@ -46,6 +46,7 @@ class Base {
         this.initialMoveSet = [];
         this.captureMoveSet = [];
         this.symbol = [];
+        this.direction = this.color == 'white' ? 1 : -1;
     }
 }
 exports.Base = Base;

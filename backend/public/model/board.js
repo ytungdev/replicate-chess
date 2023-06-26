@@ -56,7 +56,7 @@ class Board {
             let moveSet = chess.moveSet;
             let captureSet = chess.captureMoveSet;
             if (char == 'Pawn') {
-                const direction = color == 'white' ? 1 : -1;
+                const direction = chess.direction;
                 if (rank == chess.rank && file == chess.file) {
                     moveSet = chess.initialMoveSet;
                 }
