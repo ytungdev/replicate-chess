@@ -1,10 +1,6 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.chessMaker = exports.Pawn = exports.Knight = exports.Bishop = exports.Rook = exports.Queen = exports.King = exports.Base = exports.chessDict = void 0;
-const board_1 = __importDefault(require("./board"));
 exports.chessDict = {
     wK0: { rank: '1', file: 'e', color: 'white', character: 'King' },
     wQ0: { rank: '1', file: 'd', color: 'white', character: 'Queen' },
@@ -41,20 +37,6 @@ exports.chessDict = {
 };
 class Base {
     constructor(id) {
-        this.possibleMove = (rank, file) => {
-            let result = [];
-            for (let n in this.moveSet) {
-                const action = this.moveSet[n];
-                for (let i = 1; i < action.step + 1; i++) {
-                    const newR = board_1.default.moveRank(rank, action.rank * i);
-                    const newF = board_1.default.moveFile(file, action.file * i);
-                    if (newR && newF) {
-                        result.push({ rank: newR, file: newF });
-                    }
-                }
-            }
-            return result;
-        };
         this.id = id;
         this.color = exports.chessDict[id].color;
         this.character = exports.chessDict[id].character;
@@ -63,13 +45,14 @@ class Base {
         this.moveSet = [];
         this.initialMoveSet = [];
         this.captureMoveSet = [];
+        this.symbol = [];
     }
 }
 exports.Base = Base;
 class King extends Base {
     constructor() {
         super(...arguments);
-        this.symbol = 'K';
+        this.symbol = ['♔', '♚', 'K'];
         this.qty = 1;
         this.moveSet = King.moveSet;
     }
@@ -88,7 +71,7 @@ King.moveSet = [
 class Queen extends Base {
     constructor() {
         super(...arguments);
-        this.symbol = 'Q';
+        this.symbol = ['♕', '♛', 'Q'];
         this.qty = 1;
         this.moveSet = Queen.moveSet;
     }
@@ -107,7 +90,7 @@ Queen.moveSet = [
 class Rook extends Base {
     constructor() {
         super(...arguments);
-        this.symbol = 'R';
+        this.symbol = ['♖', '♜', 'R'];
         this.qty = 2;
         this.moveSet = Rook.moveSet;
     }
@@ -122,7 +105,7 @@ Rook.moveSet = [
 class Bishop extends Base {
     constructor() {
         super(...arguments);
-        this.symbol = 'B';
+        this.symbol = ['♗', '♝', 'B'];
         this.qty = 2;
         this.moveSet = Bishop.moveSet;
     }
@@ -137,7 +120,7 @@ Bishop.moveSet = [
 class Knight extends Base {
     constructor() {
         super(...arguments);
-        this.symbol = 'N';
+        this.symbol = ['♘', '♞', 'N'];
         this.qty = 2;
         this.moveSet = Knight.moveSet;
     }
@@ -156,7 +139,7 @@ Knight.moveSet = [
 class Pawn extends Base {
     constructor() {
         super(...arguments);
-        this.symbol = 'P';
+        this.symbol = ['♙', '♟︎', 'P'];
         this.qty = 8;
         this.moveSet = Pawn.moveSet;
         this.initialMoveSet = Pawn.initialMoveSet;

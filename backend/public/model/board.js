@@ -85,13 +85,11 @@ class Board {
                     }
                 }
             }
-            console.log(moveSet);
             for (let m in moveSet) {
                 const action = moveSet[m];
                 for (let i = 1; i < action.step + 1; i++) {
                     const newR = Board.moveRank(rank, action.rank * i);
                     const newF = Board.moveFile(file, action.file * i);
-                    console.log(newR, newF);
                     if (newR && newF) {
                         const sq = this.board[newR][newF];
                         const occupier = sq.occupier;
@@ -140,10 +138,12 @@ class Board {
         }
     }
     print() {
+        //print in terminal
+        let strlen = 1;
         let bstring = '';
-        bstring += this.files.map((f) => { return ` ${f} `; }).join(" ");
+        bstring += this.files.map((f) => { return `${f}`; }).join(" ");
         bstring += '\n';
-        bstring += '--------------------------------';
+        bstring += '-'.repeat((strlen + 1) * 8);
         bstring += '\n';
         for (let i = 0; i < 8; i++) {
             let b = [];
@@ -152,11 +152,11 @@ class Board {
                 const f = this.files[j];
                 const sq = this.board[r][f];
                 if (sq.occupier == null) {
-                    const c = this.board[r][f].color == 'light' ? '□□□' : '■■■';
+                    const c = this.board[r][f].color == 'light' ? '□'.repeat(strlen) : '■'.repeat(strlen);
                     b.push(c);
                 }
                 else {
-                    const sym = sq.occupier.id;
+                    const sym = sq.occupier.color == 'white' ? sq.occupier.symbol[0] : sq.occupier.symbol[1];
                     b.push(sym);
                 }
             }
@@ -165,9 +165,8 @@ class Board {
         }
         return bstring;
     }
-    show() {
-        let result;
-        result = {
+    toArray() {
+        let result = {
             files: this.files,
             ranks: this.ranks,
             board: []
@@ -189,6 +188,7 @@ _a = Board;
 Board.ranks = ['8', '7', '6', '5', '4', '3', '2', '1'];
 Board.files = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 Board.moveRank = (curent, step) => {
+    // '8' + 1 = '7'
     const curIdx = _a.ranks.indexOf(curent);
     const newIdx = curIdx + step;
     const newRank = _a.ranks[newIdx];
@@ -198,6 +198,7 @@ Board.moveRank = (curent, step) => {
     return newRank;
 };
 Board.moveFile = (curent, step) => {
+    // 'a' + 1 = 'b'
     const curIdx = _a.files.indexOf(curent);
     const newIdx = curIdx + step;
     const newFile = _a.files[newIdx];

@@ -9,14 +9,14 @@ dotenv.config();
 const app: Express = express();
 const port = process.env.PORT;
 
-
 app.use(express.json())
 
 app.get('/board', (req: Request, res: Response) => {
   let board = new Board()
   board.init()
   let result : any;
-  result = board;//.show()
+  result = board;
+  console.log(board.print())
   res.send(JSON.stringify(result));
 });
 
@@ -43,7 +43,6 @@ app.get('/moveSet', (req: Request, res: Response) => {
   let result = chessClass.moveSet
   res.send(JSON.stringify(result));
 });
-
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);

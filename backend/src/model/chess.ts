@@ -1,4 +1,3 @@
-import Board from "./board"
 
 type ChessDict = {
     [key: string]: { rank: string, file: string, color: string, character: string }
@@ -63,26 +62,9 @@ export class Base {
         this.captureMoveSet = [];
         this.symbol = []
     }
-
-    possibleMove = (rank:string, file:string):Loc[] => {
-        let result:Loc[] = []
-        for (let n in this.moveSet){
-            const action = this.moveSet[n]
-            for (let i=1;i<action.step+1;i++){
-                const newR = Board.moveRank(rank, action.rank*i)
-                const newF = Board.moveFile(file, action.file*i)
-                if(newR && newF){
-                    result.push({rank:newR, file:newF})
-                }
-            }
-        }
-        return result
-    }
 }
 
 type Move = { rank: number, file: number, step: number }
-type Loc = { rank: string, file: string }
-
 
 export class King extends Base {
     symbol = ['♔','♚','K']
@@ -115,7 +97,7 @@ export class Queen extends Base {
     moveSet = Queen.moveSet;
 }
 export class Rook extends Base {
-    symbol = ['','','R']
+    symbol = ['♖','♜','R']
     qty: number = 2
     static moveSet: Move[] = [
         { rank: 0, file: 1, step: 7 },
@@ -126,7 +108,7 @@ export class Rook extends Base {
     moveSet = Rook.moveSet;
 }
 export class Bishop extends Base {
-    symbol = ['','','B']
+    symbol = ['♗','♝','B']
     qty: number = 2
     static moveSet: Move[] = [
         { rank: 1, file: 1, step: 7 },
@@ -137,7 +119,7 @@ export class Bishop extends Base {
     moveSet = Bishop.moveSet;
 }
 export class Knight extends Base {
-    symbol = ['','','N']
+    symbol = ['♘','♞','N']
     qty: number = 2
     static moveSet: Move[] = [
         { rank: 1, file: 2, step: 1 },
@@ -152,7 +134,7 @@ export class Knight extends Base {
     moveSet = Knight.moveSet;
 }
 export class Pawn extends Base {
-    symbol = ['','','P']
+    symbol = ['♙','♟︎','P']
     qty: number = 8
     //base on white
     static moveSet: Move[] = [

@@ -33,12 +33,13 @@ const Chess = __importStar(require("./model/chess"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT;
-let board = new board_1.default();
-board.init();
 app.use(express_1.default.json());
 app.get('/board', (req, res) => {
+    let board = new board_1.default();
+    board.init();
     let result;
-    result = board; //.show()
+    result = board;
+    console.log(board.print());
     res.send(JSON.stringify(result));
 });
 // check moveSet of sq on board
@@ -58,21 +59,6 @@ app.get('/moveSet', (req, res) => {
     const c = req.query.c;
     const chessClass = Chess.chessMaker[c];
     let result = chessClass.moveSet;
-    res.send(JSON.stringify(result));
-});
-app.get('/lookAt', (req, res) => {
-    const r = req.query.r;
-    const f = req.query.f;
-    let result = board.lookAt(r, f);
-    res.send(JSON.stringify(result));
-});
-app.get('/test', (req, res) => {
-    const id = 'wK0';
-    const meta = Chess.chessDict[id];
-    const char = meta.character;
-    const make = Chess.chessMaker[char];
-    let chess = new make('wK0');
-    let result = chess;
     res.send(JSON.stringify(result));
 });
 app.listen(port, () => {
